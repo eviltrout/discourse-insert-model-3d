@@ -62,6 +62,11 @@ export default class InsertModel3DModal extends Component {
   }
 
   @action
+  setModel3D(val) {
+    this.model3D = val;
+  }
+
+  @action
   setPoster(val) {
     this.poster = val;
   }
