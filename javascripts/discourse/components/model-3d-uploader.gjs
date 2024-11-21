@@ -1,7 +1,5 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { on } from "@ember/modifier";
-import { action } from "@ember/object";
 import { getOwner } from "@ember/owner";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import ConditionalLoadingSpinner from "discourse/components/conditional-loading-spinner";
@@ -41,4 +39,3 @@ export default class Model3DUploader extends Component {
     </div>
   </template>
 }
-

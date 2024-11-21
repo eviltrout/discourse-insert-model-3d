@@ -28,24 +28,18 @@ export default class InsertModel3DModal extends Component {
   async preventSubmitOnEnter(modal) {
     // prevent submitting on enter while adding items using Enter
     modal
-      .querySelector(".model-3d-sources")
+      .querySelector(".model-3d-file")
       .addEventListener("keydown", this._keyDown);
   }
 
-  get sourceList() {
-    if (!this.sources) {
-      return [];
-    }
-
-    return this.sources.split("|");
-  }
-
   get validationMessage() {
-    return isModel3D(this.model3D) ? "" : I18n.t(themePrefix("source_not_model_3d"));
+    return isModel3D(this.model3D)
+      ? ""
+      : I18n.t(themePrefix("source_not_model_3d"));
   }
 
   _sourceType(src) {
-    let prefix = "model"
+    let prefix = "model";
     let type = "";
 
     if (src.endsWith(".glb")) {
@@ -59,8 +53,6 @@ export default class InsertModel3DModal extends Component {
 
   @action
   insertModel3D() {
-
-
     const poster = this.poster ? ` poster="${this.poster}"` : "";
     const text = `<model-viewer src="${this.model3D}" ${poster} camera-controls touch-action="pan-y"></model-viewer>`;
 
