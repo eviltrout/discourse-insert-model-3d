@@ -1,0 +1,44 @@
+<DModal
+  @closeModal={{@closeModal}}
+  @title={{theme-i18n "modal.title"}}
+  class="insert-model-3d-modal"
+  {{did-insert this.preventSubmitOnEnter}}
+>
+  <:body>
+    <div class="insert-model-3d-inputs model-3d-sources">
+      <label>
+        {{theme-i18n "modal.model_3d_title"}}
+      </label>
+
+      <Model3DUploader />
+    </div>
+
+    <div class="insert-model-3d-inputs model-3d-poster">
+      <label>
+        {{theme-i18n "modal.poster"}}
+      </label>
+
+      <PosterUploader @setPoster={{this.setPoster}} />
+    </div>
+
+    {{#if this.insertDisabled}}
+      <div class="model-3d-insert-error">
+        {{this.validationMessage}}
+      </div>
+    {{/if}}
+  </:body>
+  <:footer>
+    <DButton
+      class="btn-primary"
+      data-test-id="insert-model-3d-button"
+      @disabled={{this.insertDisabled}}
+      @label={{theme-prefix "modal.insert"}}
+      @action={{this.insertModel3D}}
+    />
+    <DButton
+      class="btn-danger"
+      @label={{theme-prefix "modal.cancel"}}
+      @action={{@closeModal}}
+    />
+  </:footer>
+</DModal>

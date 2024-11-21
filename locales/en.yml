@@ -1,0 +1,9 @@
+en:
+  modal:
+    title: Insert 3D Model
+    model_3d_title: Add 3D model file
+    poster: Poster image (optional)
+    insert: Insert
+    cancel: Cancel
+  source_not_model_3d: "Error: The model source URL is invalid."
+  composer_title: Insert 3D Model

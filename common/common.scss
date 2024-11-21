@@ -1,0 +1,76 @@
+.insert-model-3d-inputs {
+  margin-bottom: 1em;
+  padding-top: 1em;
+
+  .desc {
+    font-size: $font-down-1;
+    color: $primary-medium;
+    max-width: 350px;
+    padding-top: 0.5em;
+  }
+
+  + .insert-model-3d-inputs {
+    border-top: 1px solid $primary-low;
+  }
+
+  .value-list {
+    max-width: 500px;
+  }
+}
+
+.model-3d-insert-error {
+  color: $danger;
+}
+
+// Simple-list styling
+@mixin value-btn {
+  width: 29px;
+  border: 1px solid $primary-low;
+  outline: none;
+  padding: 0;
+
+  &:focus {
+    border-color: $tertiary;
+  }
+}
+
+.simple-list-input,
+.poster-uploader {
+  display: flex;
+  .add-value-btn {
+    @include value-btn;
+    margin-left: 0.5em;
+  }
+
+  label.btn {
+    width: 29px;
+    display: block;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-height: 30px;
+    margin-left: 0.5em;
+    line-height: 1.1;
+    margin-top: 0px;
+    text-align: center;
+    .d-icon {
+      margin-right: 0;
+    }
+  }
+
+  input {
+    margin: 0;
+    box-sizing: border-box;
+    flex: 1 0 0px;
+  }
+
+  .simple-list-uploader {
+    display: flex;
+    .loading-container {
+      margin-left: 0.5em;
+      transform: scale(0.75);
+      .spinner {
+        margin: 0;
+      }
+    }
+  }
+}

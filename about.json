@@ -1,0 +1,12 @@
+{
+  "name": "Insert 3D Model",
+  "about_url": "",
+  "license_url": "https://github.com/Beholder-Vision/discourse-insert-model-3d/blob/main/LICENSE",
+  "component": true,
+  "assets": {},
+  "color_schemes": {},
+  "modifiers": {
+    "svg_icons": ["cube"]
+  }
+
+}
