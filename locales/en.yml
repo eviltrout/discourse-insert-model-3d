@@ -8,3 +8,4 @@ en:
   source_not_model_3d: "Error: The model source URL is invalid."
   composer_title: Insert 3D Model
   load_button: Load 3D Model
+  invalid_params: Model Viewer parameters are invalid

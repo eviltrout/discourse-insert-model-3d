@@ -1,7 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import InsertModel3DModal from "../components/modal/insert-model-3d";
 import { renderIcon } from "discourse-common/lib/icon-library";
 import I18n from "I18n";
+import InsertModel3DModal from "../components/modal/insert-model-3d";
 
 function addPosterToModelViewer(modelViewer, posterURL) {
   // Setup a poster to act as a placeholder until the user clicks on load
@@ -50,7 +50,7 @@ function addPosterToModelViewer(modelViewer, posterURL) {
   loadButton.addEventListener("click", () => modelViewer.dismissPoster());
 }
 
-async function applyModel3D(element, key = "composer") {
+async function applyModel3D(element) {
   const models = element.querySelectorAll("pre[data-code-wrap=model3D]");
 
   if (!models.length) {
@@ -63,16 +63,32 @@ async function applyModel3D(element, key = "composer") {
     }
     model.dataset.processed = true;
 
-    const modelViewer = document.createElement("model-viewer");
+    // Parse parameters which are given as JSON in the pre formatted code block
     const code = model.querySelector("code");
 
-    // Parse parameters which are given as JSON in the pre formatted code block
     let params = {};
+    let paramsAreValid = true;
     try {
       params = JSON.parse(code.textContent || "");
-    } catch (e) {
-      console.log("Unable to parse model viewer params", e);
+    } catch {
+      // Linter says no-console so uncomment to debug
+      //console.error("Unable to parse model viewer params", e);
+
+      paramsAreValid = false;
     }
+
+    if (!paramsAreValid) {
+      const errorDiv = document.createElement("div");
+      errorDiv.classList.add("model-3d-insert-error");
+      errorDiv.innerText = I18n.t(themePrefix("invalid_params"));
+
+      model.after(errorDiv);
+      model.style.display = "none";
+
+      return;
+    }
+
+    const modelViewer = document.createElement("model-viewer");
 
     if (params.src) {
       modelViewer.setAttribute("src", params.src);
@@ -125,9 +141,8 @@ export default {
       });
 
       api.decorateCookedElement(
-        async (elem, helper) => {
-          const id = helper ? `post_${helper.getModel().id}` : "composer";
-          applyModel3D(elem, id);
+        async (elem) => {
+          applyModel3D(elem);
         },
         { id: "discourse-model3d-theme-component" }
       );
