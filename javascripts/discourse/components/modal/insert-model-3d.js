@@ -33,6 +33,10 @@ export default class InsertModel3DModal extends Component {
   }
 
   get validationMessage() {
+    if (!this.model3D) {
+      return "";
+    }
+
     return isModel3D(this.model3D)
       ? ""
       : I18n.t(themePrefix("source_not_model_3d"));
@@ -53,8 +57,17 @@ export default class InsertModel3DModal extends Component {
 
   @action
   insertModel3D() {
-    const poster = this.poster ? ` poster="${this.poster}"` : "";
-    const text = `<model-viewer src="${this.model3D}" ${poster} camera-controls touch-action="pan-y"></model-viewer>`;
+    let params = {
+      src: this.model3D,
+    };
+
+    if (this.poster) {
+      params.poster = this.poster;
+    }
+
+    const text = `\`\`\`model3D 
+      ${JSON.stringify(params)}
+    \`\`\``;
 
     this.args.model.toolbarEvent.addText(text);
     this.appEvents.trigger("discourse-insert-model-3d:model-3d-inserted", text);
