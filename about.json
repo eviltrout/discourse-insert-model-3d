@@ -6,9 +6,6 @@
   "assets": {},
   "color_schemes": {},
   "modifiers": {
-    "svg_icons": [
-      "cube",
-      "play"
-    ]
+    "svg_icons": ["cube", "play"]
   }
 }

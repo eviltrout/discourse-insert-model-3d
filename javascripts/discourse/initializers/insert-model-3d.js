@@ -17,7 +17,7 @@ function addPosterToModelViewer(modelViewer, posterURL) {
   if (posterURL) {
     poster.style.backgroundImage = `url("${posterURL}")`;
   } else {
-    poster.style.backgroundColor = "black"
+    poster.style.backgroundColor = "black";
   }
 
   poster.setAttribute("slot", "poster");
@@ -25,11 +25,12 @@ function addPosterToModelViewer(modelViewer, posterURL) {
   modelViewer.appendChild(poster);
 
   const loadButton = document.createElement("div");
-  loadButton.classList.add("btn-primary")
+  loadButton.classList.add("btn-primary");
   loadButton.style.cursor = "pointer";
   loadButton.style.display = "inline-block";
   loadButton.style.padding = "10px 18px 9px 18px";
-  loadButton.style.boxShadow = "0 0 8px rgba(0,0,0,.2), 0 0 4px rgba(0,0,0,.25)";
+  loadButton.style.boxShadow =
+    "0 0 8px rgba(0,0,0,.2), 0 0 4px rgba(0,0,0,.25)";
   loadButton.style.position = "absolute";
   loadButton.style.left = "50%";
   loadButton.style.top = "50%";
@@ -37,10 +38,10 @@ function addPosterToModelViewer(modelViewer, posterURL) {
   loadButton.style.zIndex = "100";
 
   loadButton.setAttribute("slot", "poster");
-  loadButton.innerHTML = renderIcon("string", "play")
-  
+  loadButton.innerHTML = renderIcon("string", "play");
+
   const loadText = document.createElement("span");
-  loadText.style.paddingLeft = "5px"
+  loadText.style.paddingLeft = "5px";
   loadText.innerText = I18n.t(themePrefix("load_button"));
   loadButton.appendChild(loadText);
 
@@ -64,7 +65,7 @@ async function applyModel3D(element, key = "composer") {
 
     const modelViewer = document.createElement("model-viewer");
     const code = model.querySelector("code");
-    
+
     // Parse parameters which are given as JSON in the pre formatted code block
     let params = {};
     try {
