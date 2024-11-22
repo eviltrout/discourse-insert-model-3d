@@ -65,9 +65,9 @@ export default class InsertModel3DModal extends Component {
       params.poster = this.poster;
     }
 
-    const text = `\`\`\`model3D 
-      ${JSON.stringify(params)}
-    \`\`\``;
+    let text = `\`\`\`model3D 
+      ${JSON.stringify(params)}`;
+    text += "\n```";
 
     this.args.model.toolbarEvent.addText(text);
     this.appEvents.trigger("discourse-insert-model-3d:model-3d-inserted", text);
