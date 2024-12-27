@@ -67,7 +67,17 @@ export default class InsertModel3DModal extends Component {
 
     let text = `\`\`\`model3D 
       ${JSON.stringify(params)}`;
-    text += "\n```";
+    text += "\n```\n";
+
+    // This is not great, but for now we need to include links to the uploaded assets so that
+    // the server recognises that they should not be deleted.
+    text += "<!-- PLEASE DON'T DELETE THESE LINKS -->\n";
+    text += `<a href="${this.model3D}" style="display: none;" tabindex="-1"></a>\n`;
+
+    if (this.poster) {
+      text += `<a href="${this.poster}" style="display: none;" tabindex="-1"></a>\n`;
+    }
+    text += "<!-- PLEASE DON'T DELETE THESE LINKS -->\n";
 
     this.args.model.toolbarEvent.addText(text);
     this.appEvents.trigger("discourse-insert-model-3d:model-3d-inserted", text);

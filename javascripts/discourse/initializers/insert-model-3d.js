@@ -50,14 +50,6 @@ function addPosterToModelViewer(modelViewer, posterURL) {
   loadButton.addEventListener("click", () => modelViewer.dismissPoster());
 }
 
-function createHiddenUploadLink(url) {
-  const uploadLink = document.createElement("a");
-  uploadLink.setAttribute("href", url);
-  uploadLink.style.display = "none";
-
-  return uploadLink;
-}
-
 async function applyModel3D(element) {
   const models = element.querySelectorAll("pre[data-code-wrap=model3D]");
 
@@ -120,17 +112,6 @@ async function applyModel3D(element) {
     // then hide the pre element
     model.after(modelViewer);
     model.style.display = "none";
-
-    // Now we create hidden links so that if the assets are uploads then they are recognised by the server as such.
-    // This is needed because if the assets are just referenced by the model-viewer HTML element then the Discourse
-    // server will not recognise them as uploads (see https://github.com/discourse/discourse/blob/03bb43f7468d3aa6e73bba0805193ae50c7ec2d5/app/models/post.rb#L1137
-    // for the logic). Assets referenced by the href attribute of an <a> HTML element are recognised though.
-    if (posterURL) {
-      modelViewer.after(createHiddenUploadLink(posterURL));
-    }
-    if (params.src) {
-      modelViewer.after(createHiddenUploadLink(params.src));
-    }
   });
 }
 
