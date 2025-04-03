@@ -91,10 +91,10 @@ async function applyModel3D(element) {
     const modelViewer = document.createElement("model-viewer");
 
     if (params.src) {
-      modelViewer.setAttribute("src", "https://us1.discourse-cdn.com/flex002/uploads/eviltrout/original/1X/8c4d08760bc866a975b89695602bcad77b2d4f04.jpeg");
+      modelViewer.setAttribute("src", params.src);
     }
 
-    modelViewer.setAttribute("environment-image", 
+    modelViewer.setAttribute("environment-image", "https://us1.discourse-cdn.com/flex002/uploads/eviltrout/original/1X/8c4d08760bc866a975b89695602bcad77b2d4f04.jpeg");
 
     const posterURL = params.poster || "";
     addPosterToModelViewer(modelViewer, posterURL);
